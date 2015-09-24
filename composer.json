@@ -1,0 +1,11 @@
+{
+    "require": {
+      "drupal/drupal-extension": "*",
+      "phpunit/php-code-coverage": "~2.0",
+      "behat/mink-goutte-driver": "^1.1@dev"
+    },
+    "minimum-stability": "dev",
+    "config": {
+      "bin-dir": "bin/"
+    }
+}
