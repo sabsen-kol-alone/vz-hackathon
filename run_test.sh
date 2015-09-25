@@ -1,5 +1,11 @@
 cd tests
 pwd
+echo 'Parent:'
+ls -l ../
+
+echo 'Bin:'
+ls -l ../bin
+
 ../bin/behat
 return_code=$?
 if [ $return_code = 0 ]
