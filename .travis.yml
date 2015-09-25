@@ -4,6 +4,7 @@ php:
    - 5.4
 
 script: 
+   - chmod 0755 -R vendor
    - cd tests
    - pwd
    - ls -l ../vendor/behat/behat/bin/behat
