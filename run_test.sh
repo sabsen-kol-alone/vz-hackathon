@@ -1,5 +1,5 @@
 cd tests
-../bin/behat
+bin/behat
 return_code=$?
 if [ $return_code = 0 ]
 then
