@@ -4,4 +4,4 @@ php:
    - 5.5
    - 5.4
 
-script: cd tests; ../bin/behat
+script: cd tests; ../vendor/behat/behat/bin/behat
