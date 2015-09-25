@@ -6,7 +6,7 @@ ls -l ../
 echo 'Bin:'
 ls -l ../bin
 
-../vendor/behat/behat/bin/behat
+sh /home/travis/build/sabsen-kol-alone/vz-heckathon/vendor/behat/behat/bin/behat
 
 return_code=$?
 if [ $return_code = 0 ]
