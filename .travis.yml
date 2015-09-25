@@ -1,12 +1,9 @@
 language: php
 
 php:
-   - 5.4
+   - 5.5
 
 script: 
    - php composer.phar install
-   - chmod 0755 -R vendor
    - cd tests
-   - pwd
-   - ls -l ../vendor/behat/behat/bin/behat
    - ../vendor/behat/behat/bin/behat
