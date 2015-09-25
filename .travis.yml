@@ -4,6 +4,7 @@ php:
    - 5.4
 
 script: 
+   - php composer.phar install
    - chmod 0755 -R vendor
    - cd tests
    - pwd
