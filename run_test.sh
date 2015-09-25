@@ -6,7 +6,8 @@ ls -l ../
 echo 'Bin:'
 ls -l ../bin
 
-../bin/behat
+../vendor/behat/behat/bin/behat
+
 return_code=$?
 if [ $return_code = 0 ]
 then
