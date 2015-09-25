@@ -1,4 +1,5 @@
 cd tests
+pwd
 bin/behat
 return_code=$?
 if [ $return_code = 0 ]
