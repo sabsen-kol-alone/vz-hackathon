@@ -1,10 +1,10 @@
 language: php
 
 php:
-   - 5.5
    - 5.4
 
 script: 
    - cd tests
+   - pwd
    - ls -l ../vendor/behat/behat/bin/behat
    - ../vendor/behat/behat/bin/behat
