@@ -3,7 +3,8 @@ language: php
 php:
    - 5.5
 
-script: 
+script:
+   - php composer.phar self-update
    - php composer.phar install
    - cd tests
    - ../vendor/behat/behat/bin/behat
