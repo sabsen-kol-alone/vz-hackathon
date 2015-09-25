@@ -6,4 +6,5 @@ php:
 
 script: 
    - cd tests
+   - ls -l ../vendor/behat/behat/bin/behat
    - ../vendor/behat/behat/bin/behat
