@@ -32,7 +32,7 @@ class Sample {
     return $this->set_array( $data);
   }
 
-  public function set_array( $data) {
+  private function set_array( $data) {
     try {
       $this->db->beginTransaction();
       
@@ -89,6 +89,25 @@ class Sample {
 ***/
   }
 
+  private function truncate( $table) {
+    try {
+      $this->db->beginTransaction();
+
+      $query = "TRUNCATE TABLE ?";
+
+      $prep = $this->db->prepare($query);
+      $prep->execute(array( $table));
+
+      $this->db->commit();
+      return true;
+
+    } catch(PDOException $e) {
+      $this->db->rollBack();
+      $this->msg( $e->getMessage(), "error");
+      return false;
+    }
+  }
+
   private function msg( $msg, $type = "") {
     if( $this->debug || $type == 'error') {
       echo $msg . "\n";
@@ -107,10 +126,10 @@ class Sample {
       $table_def = 
         "CREATE TABLE IF NOT EXISTS sample (
          id            int(10) unsigned NOT NULL AUTO_INCREMENT,
-           name          varchar(30) NOT NULL,
-           age           tinyint(4) NOT NULL,
-           date_of_birth date NOT NULL,
-           PRIMARY KEY   (id)
+         name          varchar(30) NOT NULL,
+         age           tinyint(4) NOT NULL,
+         date_of_birth date NOT NULL,
+         PRIMARY KEY   (id)
       ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
       
       $prep = $this->db->prepare($table_def);
