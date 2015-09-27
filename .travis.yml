@@ -1,10 +1,26 @@
 language: php
 
 php:
-   - 5.5
+- 5.5
+
+env:
+- DB=mysql
+
+before_script:
+- if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS test;" -uroot; fi
 
 script:
-   - php composer.phar self-update
-   - php composer.phar install
-   - cd tests
-   - ../vendor/behat/behat/bin/behat
+- php composer.phar self-update
+- php composer.phar install
+- cd tests
+- ../vendor/behat/behat/bin/behat
+
+deploy:
+  edge: true
+  provider: cloudfoundry
+  username: sabsen.kol@gmail.com
+  password:
+    secure: Wr3ZZ4y2GhZe2wqmdbMPyVyoLhEK51jKq/1UvDpEClqDNGUKxvOJwNp/3ViGmzarqoD2YCNTB2g+EEQZuV9meN2eS/lZ53sEoKzYvTRtfSG8EM7pbALFq4XFT29hr0oMtgEcpAy2hmswe7rxDaFd/Do4eS7R4+R08e1RdshV3sEABXreTEHtk+Um29DzFwK4cmjSzRI6Yp0iVBpAxQzszAvYa/qZczrlvs0aAQL5r5kzb4jGs4bXTq/+a1anR3ekYmMLkjrxe/lJ5tOZxNQRWg4N+mwD+qukg657yfu4RSW1psTrPyDkgdDBOZuNx28oa/xKUPxJ4T65s8g9V6/kQ5KXK90HotWEkfyeyUNVD0ZPJlCWJoI6TKbEkQ+aS0r1uj2mC0nTqAdA05Aw+5pVFe069VXxNnwb9nKtgOJQ6McsxlLH+59dRjUTS39lcsNF91J1cUT1Xk8846RHjXBjPR3IFJxaZ0lEY4rIQLWrHLpAMaQIBx1ADTgVCGz1phHx2gHlWcSbYlWSj/SNLV4hKax3JVsxk8PMnw9Jt6PQH+IrzKVBf6v0BWa8+5YaK9lymuPDBmyYZRpNfJuqApPJHn3vRlFu5FrXCX8F5uvHUVdXhv3+ZjuZeCNH9nqLt18rvqVpAc0bGT5dAoQ8NTUMUsxN5BhWrujNDv9Be+VIZ0Q=
+  api: https://api.run.pivotal.io
+  organization: sabyasachi-org
+  space: staging

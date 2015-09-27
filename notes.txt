@@ -1,0 +1,156 @@
+Untracked -> Unmodified -> Modified -> Staged -> Commited -> Pushed to Remote
+
+$ git status -s
+  M README
+  MM Rakefile
+  A lib/git.rb
+  M lib/simplegit.rb
+  ?? LICENSE.txt
+ 
+$ git commit -m 'initial project version'
+
+$ git add c
+$ git rm c
+
+To add all files
+$ git add -A
+
+Remove from git repo but keep in folder as untracked:
+$ git rm --cached c
+
+Setup
+-----
+
+$ git clone https://github.com/sabsen-kol-alone/vz-heckathon.git
+$ cd vz-heckathon
+$ curl -sS https://getcomposer.org/installer | php
+$ php composer.phar self-update
+
+composer.json
+-------------
+{
+    "require": {
+      "drupal/drupal-extension": "*",
+      "phpunit/php-code-coverage": "~2.0",
+      "behat/mink-goutte-driver": "^1.1@dev"
+    },
+    "minimum-stability": "dev",
+    "config": {
+      "bin-dir": "bin/"
+    }
+}
+----------------------------------------------------
+
+$ php composer.phar install
+
+MyContext.php
+-------------
+<?php
+
+  use Drupal\DrupalExtension\Context\RawDrupalContext;
+  use Behat\Behat\Context\SnippetAcceptingContext;
+  use Behat\Gherkin\Node\PyStringNode;
+  use Behat\Gherkin\Node\TableNode;
+  use Behat\Behat\Event\StepEvent;
+  use Behat\Behat\Hook\Scope\AfterStepScope;
+
+
+  /**
+   * Defines application features from the specific context.
+   */
+  class MyContext extends RawDrupalContext 
+                    implements SnippetAcceptingContext {
+
+    /**
+     * Initializes context.
+     *
+     * Every scenario gets its own context instance.
+     * You can also pass arbitrary arguments to the
+     * context constructor through behat.yml
+     */
+
+    public function __construct() {
+    }
+
+    /**
+     * @BeforeSuite
+     */
+    public static function removePreviousLogFiles() {
+
+      echo "Initializing ...\n";
+      $log_path = getenv( 'BEHAT_LOG_PATH');
+
+      if( empty( $log_path)) {
+        $log_path = __DIR__ . '/../../output';
+      }
+
+      @mkdir( $log_path, 0755, true);
+
+      $files = scandir( $log_path);
+
+      foreach( $files as $file) {
+        if( substr( $file,0,1) != '.' ) {
+          echo 'Removing file ' . $file . " ...\n";
+          unlink( $log_path . '/' . $file);
+        }
+      }
+    }
+
+    /**
+     * @AfterStep
+     */
+    function dumpInfoAfterFailedStep( AfterStepScope $scope) {
+
+      $log_path = getenv( 'BEHAT_LOG_PATH');
+
+      if( empty( $log_path)) {
+        $log_path = __DIR__ . '/../../output';
+      }
+
+      @mkdir( $log_path, 0755, true);
+
+      $driver = $this->getSession()->getDriver();
+
+      if( !$driver instanceof 
+          Behat\Mink\Driver\Selenium2Driver) {
+        return;
+      }
+
+      if( 99 === $scope->getTestResult()->getResultCode()) {
+
+        $image_data = $driver->getScreenshot();
+
+        $file_path = $log_path 
+           . '/' . date('y-m-d') 
+           . '-error-' . uniqid() . '.png';
+
+        file_put_contents( $file_path, $image_data);
+
+        $html_data = $driver->getContent();
+
+        $file_path = $log_path 
+           . '/' . date('y-m-d') 
+           . '-error-' . uniqid() . '.html';
+
+        file_put_contents( $file_path, $html_data);
+      }
+   }
+
+
+}
+
+------------------------------------------------------
+
+run.pivotal.io
+https://console.run.pivotal.io
+cf login -a https://api.run.pivotal.io
+
+Go Grab the Travis gem from GitHub,
+https://github.com/travis-ci/travis.rb
+instead:
+$ sudo gem install travis -v 1.8.0 --no-rdoc --no-ri
+
+and run this command:
+travis setup cloudfoundry
+
+

@@ -13,6 +13,7 @@
 // use Behat\Gherkin\Node\TableNode;
 
 include __DIR__ . "/../../../src/Sample.php";
+
 /**
  * Defines application features from the specific context.
  */
@@ -29,30 +30,34 @@ class MyContext extends RawDrupalContext
      */
     public function __construct()
     {
+      $data = new Sample();
+      $data->init();
     }
 
     /**
-     * @Given I set a value :arg1
+     * @Given I set values :arg1, :arg2, :arg3
      */
-    public function iSetAValue($arg1)
+    public function iSetAValue($arg1, $arg2, $arg3)
     {
       $data = new Sample();
-      if( $data->set( $arg1)) {
+      if( $data->set( $arg1, $arg2, $arg3)) {
         return true;
       } else {
-        throw new Exception( "Could not set value.\n");
+        throw new Exception( "Could not set values.\n");
       }
     }
 
     /**
-     * @Then I should get back :arg1
+     * @Then id :arg1 should get back :arg2, :arg3, :arg4
      */
-    public function iShouldGetBack($arg1)
+    public function iShouldGetBack($arg1, $arg2, $arg3, $arg4)
     {
       $data = new Sample();
-      $val = trim($data->get());
-      if( $val != $arg1) {
-        throw new Exception( "Value did not match.\n");
+      $rows = $data->get( $arg1);
+      print_r( $rows);
+      $row = $rows[0];
+      if( $row[1] != $arg2 || $row[2] != $arg3 || $row[3] != $arg4 ) {
+        throw new Exception( "Some Values did not match.\n");
       }
     }
 
