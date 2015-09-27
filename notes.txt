@@ -60,7 +60,6 @@ MyContext.php
    */
   class MyContext extends RawDrupalContext 
                     implements SnippetAcceptingContext {
-
     /**
      * Initializes context.
      *
