@@ -1,0 +1,8 @@
+---
+applications:
+- name: hackathon-vz
+  memory: 2GB
+  host: alone
+  disk_quota: 1GB
+  instances: 1
+  path: ./web/
