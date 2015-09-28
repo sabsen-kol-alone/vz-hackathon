@@ -7,10 +7,10 @@ class Sample {
   
   public function __construct() {
 
-    $hostname = '127.0.0.1';
-    $username = 'root';
-    $password = '';
-    $database = 'test';
+    $hostname = 'us-cdbr-iron-east-03.cleardb.net';
+    $username = 'b41a04c42e55e3';
+    $password = '8d96c73c';
+    $database = 'ad_1bc8e31313604ae';
 
     try {
       $this->db = new PDO( 
