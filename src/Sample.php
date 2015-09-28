@@ -9,19 +9,19 @@ class Sample {
 
     $env = getenv('ENV');
 
-    $hostname = '127.0.0.1';
+    $hostname = '127.0.0.1:3306';
     $username = 'root';
     $password = '';
     $database = 'test';
     
     if( $env == 'pivotal') {
-      $hostname = 'us-cdbr-iron-east-03.cleardb.net';
+      $hostname = 'us-cdbr-iron-east-03.cleardb.net:3306';
       $username = 'b41a04c42e55e3';
       $password = '8d96c73c';
       $database = 'ad_1bc8e31313604ae';
 
     } else if( $env == 'travis') {
-      $hostname = '127.0.0.1';
+      $hostname = '127.0.0.1:3306';
       $username = 'root';
       $password = '';
       $database = 'test';
