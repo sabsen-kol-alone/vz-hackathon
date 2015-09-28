@@ -1,12 +1,13 @@
 <?php
   error_reporting(-1);
   ini_set('display_errors', 1);
-  include_once( 'Sample.php');
 
   echo 'Hello World!<br>';
   
   phpinfo();
 
+/***
+  include_once( 'Sample.php');
   $sample->init();
 
   $sample->set( 'Tom', 56, '1959-04-06');
@@ -16,5 +17,5 @@
   echo '<pre>';
   print_r( $sample->get());
   echo '</pre>';
-
+***/
 
