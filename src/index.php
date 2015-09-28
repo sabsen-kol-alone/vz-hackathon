@@ -6,7 +6,7 @@
   
   phpinfo();
 
-/***
+
   include_once( 'Sample.php');
   $sample->init();
 
@@ -17,5 +17,5 @@
   echo '<pre>';
   print_r( $sample->get());
   echo '</pre>';
-***/
+
 
