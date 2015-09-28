@@ -30,7 +30,7 @@ class Sample {
     }
 
     try {
-      $this->db = new PDO( 
+      $this->db = new \PDO( 
                    "mysql:host={$hostname};dbname={$database}", 
                    $username, 
                    $password);
