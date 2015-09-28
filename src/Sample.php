@@ -2,17 +2,17 @@
 
 class Sample {
 
-  private $debug = true;
+  private $debug = false;
   private $db = null;
   
   public function __construct() {
 
     $env = getenv('ENV');
-    echo "Environment: {$env}<br>";
+    $this->msg( "Environment: {$env}\n" );
 
-    $hostname = '127.0.0.1:3306';
-    $username = 'root';
-    $password = '';
+    $hostname = 'localhost';
+    $username = 'test';
+    $password = 'test';
     $database = 'test';
     
     if( $env == 'pivotal') {
@@ -43,8 +43,8 @@ class Sample {
     }
   }
 
-  public function set( $name, $age, $date_of_birth) {
-    $data = array( $name, $age, $date_of_birth);
+  public function set( $name, $id) {
+    $data = array( $name, $id);
     return $this->set_array( $data);
   }
 
@@ -53,8 +53,7 @@ class Sample {
       $this->db->beginTransaction();
       
       $query = 
-        "INSERT INTO sample ( id, name, age, date_of_birth) 
-           VALUES ( NULL, ?, ?, ?)";
+        "INSERT INTO sample ( name, id) VALUES ( ?, ?)";
       
       $prep = $this->db->prepare($query);
       $prep->execute($data);
@@ -69,15 +68,11 @@ class Sample {
     }
   }
 
-  public function get($id = null) {
+  public function get_name($id) {
     
     $data = array();
-    if( $id === null ) {
-      $query = "SELECT * from sample";
-    } else {
-      $query = "SELECT * from sample where id = ?";
-      $data = array( $id);
-    }
+    $query = "SELECT * from sample where id = ?";
+    $data = array( $id);
 
     $this->msg( "Fetching all data ...\n");
 
@@ -103,6 +98,29 @@ class Sample {
       print_r($row);
     }
 ***/
+  }
+
+  public function get_id($name) {
+    
+    $data = array();
+    $query = "SELECT * from sample where name = ?";
+    $data = array( $name);
+
+    $this->msg( "Fetching all data ...\n");
+
+    try {
+
+      $prep = $this->db->prepare($query);
+      $prep->execute( $data);
+      $rows = $prep->fetchAll();
+      return $rows;
+
+    } catch(PDOException $e) {
+
+      echo $e->getMessage();
+      $this->msg( $e->getMessage(), "error");
+      exit(1);
+    }
   }
 
   private function truncate( $table) {
@@ -141,12 +159,10 @@ class Sample {
 
       $table_def = 
         "CREATE TABLE IF NOT EXISTS sample (
-         id            int(10) unsigned NOT NULL AUTO_INCREMENT,
          name          varchar(30) NOT NULL,
-         age           tinyint(4) NOT NULL,
-         date_of_birth date NOT NULL,
+         id            int(10) NOT NULL,
          PRIMARY KEY   (id)
-      ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+      ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
       
       $prep = $this->db->prepare($table_def);
       $prep->execute();
@@ -161,12 +177,3 @@ class Sample {
     }
   }
 }
-
-  $sample = new Sample();
-//  $sample->init();
-  
-//  $sample->set( 'saby', 56, '1959-10-06');
-//  $sample->set( 'piu', 52, '1963-07-23');
-//  $sample->set( 'sonai', 23, '1992-02-19');
-
-//  print_r( $sample->get());

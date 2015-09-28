@@ -35,30 +35,46 @@ class MyContext extends RawDrupalContext
     }
 
     /**
-     * @Given I set values :arg1, :arg2, :arg3
+     * @Given the following people exist:
      */
-    public function iSetAValue($arg1, $arg2, $arg3)
+    public function theFollowingPeopleExist(TableNode $table)
     {
       $data = new Sample();
-      if( $data->set( $arg1, $arg2, $arg3)) {
-        return true;
-      } else {
-        throw new Exception( "Could not set values.\n");
+      $values = $table->getColumnsHash();
+      foreach( $values as $val ) {
+        $data->set( $val['name'], $val['id']);
       }
     }
 
     /**
-     * @Then id :arg1 should get back :arg2, :arg3, :arg4
+     * @Then id of name :arg1 should be :arg2
      */
-    public function iShouldGetBack($arg1, $arg2, $arg3, $arg4)
+    public function idOfNameShouldBe($arg1, $arg2)
     {
       $data = new Sample();
-      $rows = $data->get( $arg1);
-      print_r( $rows);
-      $row = $rows[0];
-      if( $row[1] != $arg2 || $row[2] != $arg3 || $row[3] != $arg4 ) {
-        throw new Exception( "Some Values did not match.\n");
+      $rows = $data->get_id( $arg1);
+ //     print_r( $rows);
+      if( sizeof( $rows) != 1 ) {
+        throw new Exception( "ID is not present.\n");
+      } else
+      if( $rows[0]['id'] != $arg2 ) {
+        throw new Exception( "ID did not match.\n");
       }
     }
 
+    /**
+     * @Then name of id :arg1 should be :arg2
+     */
+    public function nameOfIdShouldBe($arg1, $arg2)
+    {
+      $data = new Sample();
+      $rows = $data->get_name( $arg1);
+//      print_r( $rows);
+      if( sizeof( $rows) != 1 ) {
+        throw new Exception( "Name is not present.\n");
+      } else
+      if( $rows[0]['name'] != $arg2 ) {
+        throw new Exception( "Name did not match.\n");
+      }
+    }
 }
