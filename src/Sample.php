@@ -9,6 +9,11 @@ class Sample {
 
     $env = getenv('ENV');
 
+    $hostname = '127.0.0.1';
+    $username = 'root';
+    $password = '';
+    $database = 'test';
+    
     if( $env == 'pivotal') {
       $hostname = 'us-cdbr-iron-east-03.cleardb.net';
       $username = 'b41a04c42e55e3';
@@ -20,17 +25,10 @@ class Sample {
       $username = 'root';
       $password = '';
       $database = 'test';
-
-    } else if( $env == 'local') {
-
-      $hostname = '127.0.0.1';
-      $username = 'root';
-      $password = '';
-      $database = 'test';
     }
 
     try {
-      $this->db = new \PDO( 
+      $this->db = new PDO( 
                    "mysql:host={$hostname};dbname={$database}", 
                    $username, 
                    $password);
