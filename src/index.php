@@ -11,21 +11,21 @@
 
   if (function_exists('mysql_connect')) {
     $hasMySQL = true;
-    $sentence.= "(Deprecated) MySQL <b>is installed</b> ";
+    $sentence.= "(Deprecated) MySQL <b>is installed</b>.<br>";
   } else 
-    $sentence.= "(Deprecated) MySQL <b>is not</b> installed ";
+    $sentence.= "(Deprecated) MySQL <b>is not installed</b>.<br>";
 
   if (function_exists('mysqli_connect')) {
     $hasMySQLi = true;
-    $sentence.= "and the new (improved) MySQL <b>is installed</b>. ";
+    $sentence.= "and the new (improved) MySQL <b>is installed</b>.<br>";
   } else
-    $sentence.= "and the new (improved) MySQL <b>is not installed</b>. ";
+    $sentence.= "and the new (improved) MySQL <b>is not installed</b>.<br>";
 
   if (function_exists('mysqli_get_client_stats')) {
     $withMySQLnd = true;
-    $sentence.= "This server is using MySQLnd as the driver.";
+    $sentence.= "This server is using MySQLnd as the driver.<br>";
   } else
-    $sentence.= "This server is using libmysqlclient as the driver.";
+    $sentence.= "This server is using libmysqlclient as the driver.<br>";
 
   echo $sentence;
 
