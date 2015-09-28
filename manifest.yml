@@ -5,4 +5,4 @@ applications:
   host: alone
   disk_quota: 1GB
   instances: 1
-  path: ./web/
+  path: ./src/
