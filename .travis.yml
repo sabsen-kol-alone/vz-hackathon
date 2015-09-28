@@ -16,6 +16,7 @@ script:
 - ../vendor/behat/behat/bin/behat
 - cd ../
 
+
 deploy:
   edge: true
   provider: cloudfoundry
