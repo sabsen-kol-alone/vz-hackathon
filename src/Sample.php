@@ -9,15 +9,23 @@ class Sample {
 
     $env = getenv('ENV');
 
-    $hostname = 'us-cdbr-iron-east-03.cleardb.net';
-    $username = 'b41a04c42e55e3';
-    $password = '8d96c73c';
-    $database = 'ad_1bc8e31313604ae';
+    if( $env == 'pivotal') {
+      $hostname = 'us-cdbr-iron-east-03.cleardb.net';
+      $username = 'b41a04c42e55e3';
+      $password = '8d96c73c';
+      $database = 'ad_1bc8e31313604ae';
 
-    if( $env == 'travis') {
+    } else if( $env == 'travis') {
       $hostname = '127.0.0.1';
       $username = 'root';
       $password = '';
+      $database = 'test';
+
+    } else if( $env == 'local') {
+
+      $hostname = '127.0.0.1';
+      $username = 'root';
+      $password = 'Sonai!2306';
       $database = 'test';
     }
 
