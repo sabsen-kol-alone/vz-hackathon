@@ -4,8 +4,33 @@
 
   echo 'Hello World!<br>';
   
-  phpinfo();
+  $hasMySQL = false;
+  $hasMySQLi = false;
+  $withMySQLnd = false;
+  $sentence = '';
 
+  if (function_exists('mysql_connect')) {
+    $hasMySQL = true;
+    $sentence.= "(Deprecated) MySQL <b>is installed</b> ";
+  } else 
+    $sentence.= "(Deprecated) MySQL <b>is not</b> installed ";
+
+  if (function_exists('mysqli_connect')) {
+    $hasMySQLi = true;
+    $sentence.= "and the new (improved) MySQL <b>is installed</b>. ";
+  } else
+    $sentence.= "and the new (improved) MySQL <b>is not installed</b>. ";
+
+  if (function_exists('mysqli_get_client_stats')) {
+    $withMySQLnd = true;
+    $sentence.= "This server is using MySQLnd as the driver.";
+  } else
+    $sentence.= "This server is using libmysqlclient as the driver.";
+
+  echo $sentence;
+
+/*  
+  phpinfo();
 
   include_once( 'Sample.php');
   $sample->init();
@@ -17,5 +42,5 @@
   echo '<pre>';
   print_r( $sample->get());
   echo '</pre>';
-
+*/
 
