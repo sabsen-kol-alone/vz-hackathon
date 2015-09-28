@@ -29,7 +29,7 @@
 
   echo $sentence;
 
-/*  
+  
   phpinfo();
 
   include_once( 'Sample.php');
@@ -42,5 +42,5 @@
   echo '<pre>';
   print_r( $sample->get());
   echo '</pre>';
-*/
+
 
