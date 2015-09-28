@@ -25,7 +25,7 @@ class Sample {
 
       $hostname = '127.0.0.1';
       $username = 'root';
-      $password = 'Sonai!2306';
+      $password = '';
       $database = 'test';
     }
 
