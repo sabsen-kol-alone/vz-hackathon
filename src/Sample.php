@@ -8,6 +8,7 @@ class Sample {
   public function __construct() {
 
     $env = getenv('ENV');
+    echo "Environment: {$env}<br>";
 
     $hostname = '127.0.0.1:3306';
     $username = 'root';
@@ -15,10 +16,10 @@ class Sample {
     $database = 'test';
     
     if( $env == 'pivotal') {
-      $hostname = 'us-cdbr-iron-east-03.cleardb.net:3306';
-      $username = 'b41a04c42e55e3';
-      $password = '8d96c73c';
-      $database = 'ad_1bc8e31313604ae';
+      $hostname = 'us-cdbr-iron-east-03.cleardb.net';
+      $username = 'be0b9be2215cc9';
+      $password = '8fb87be6';
+      $database = 'ad_8c7dc9fcb083716';
 
     } else if( $env == 'travis') {
       $hostname = '127.0.0.1:3306';
