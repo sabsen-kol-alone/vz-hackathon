@@ -4,43 +4,19 @@
 
   echo 'Hello World!<br>';
   
-  $hasMySQL = false;
-  $hasMySQLi = false;
-  $withMySQLnd = false;
-  $sentence = '';
-
-  if (function_exists('mysql_connect')) {
-    $hasMySQL = true;
-    $sentence.= "(Deprecated) MySQL <b>is installed</b>.<br>";
-  } else 
-    $sentence.= "(Deprecated) MySQL <b>is not installed</b>.<br>";
-
-  if (function_exists('mysqli_connect')) {
-    $hasMySQLi = true;
-    $sentence.= "and the new (improved) MySQL <b>is installed</b>.<br>";
-  } else
-    $sentence.= "and the new (improved) MySQL <b>is not installed</b>.<br>";
-
-  if (function_exists('mysqli_get_client_stats')) {
-    $withMySQLnd = true;
-    $sentence.= "This server is using MySQLnd as the driver.<br>";
-  } else
-    $sentence.= "This server is using libmysqlclient as the driver.<br>";
-
-  echo $sentence;
-
-  
-  phpinfo();
+//  phpinfo();
 
   include_once( 'Sample.php');
+
+  $sample = new Sample();
   $sample->init();
 
-  $sample->set( 'Tom', 56, '1959-04-06');
-  $sample->set( 'Joe', 52, '1963-09-23');
-  $sample->set( 'Che', 23, '1992-04-19');
+  $sample->set( 'Tom', 10);
+  $sample->set( 'Joe', 20);
+  $sample->set( 'Che', 30);
 
   echo '<pre>';
-  print_r( $sample->get());
+  print_r( $sample->get_name(10));
+  print_r( $sample->get_name(30));
+  print_r( $sample->get_id('Joe'));
   echo '</pre>';
-
-

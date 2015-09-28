@@ -12,10 +12,7 @@ before_script:
 script:
 - php composer.phar self-update
 - php composer.phar install
-- cd tests
-- ../vendor/behat/behat/bin/behat
-- cd ../
-
+- ./run_tests.sh
 
 deploy:
   edge: true

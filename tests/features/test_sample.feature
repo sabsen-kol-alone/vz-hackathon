@@ -1,12 +1,12 @@
-Feature: Testing a sample project
+Feature: Testing a Sample class
 
-Scenario: Testing getter and setter
+Scenario: Testing getter and setter methods
   Given the following people exist:
      | name   | id |
-     | saby   | 10  |
-     | joe    | 20  |
-     | tom    | 30  |
+     | mike   | 10 |
+     | joe    | 20 |
+     | tom    | 30 |
 
-  Then id of name "saby" should be "10"
-  Then name of id "20" should be "joe1"
+  Then id of name "mike" should be "10"
+  Then name of id "20" should be "joel"
   Then id of name "tom" should be "10"

@@ -19,16 +19,6 @@ default:
       base_url: http://localhost
       javascript_session: selenium2
     Drupal\DrupalExtension:
-#      blackbox: ~
-#      api_driver: 'drupal'
-#      drush:
-#        alias: 'local'
-#      drupal:
-#        drupal_root: 'c:/drupal'
-#      selectors:
-#        message_selector: '.messages'
-#        error_message_selector: '.messages.error'
-#        success_message_selector: '.message.status'
       region_map:
         footer: '#footer'
         
