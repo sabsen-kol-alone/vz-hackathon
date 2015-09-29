@@ -8,5 +8,5 @@ Scenario: Testing getter and setter methods
      | tom    | 30 |
 
   Then id of name "mike" should be "10"
-  Then name of id "20" should be "joel"
-  Then id of name "tom" should be "10"
+  Then name of id "20" should be "joe"
+  Then id of name "tom" should be "30"
