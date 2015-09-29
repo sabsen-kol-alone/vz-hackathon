@@ -14,7 +14,8 @@ default:
         guzzle_parameters:
           verify: false
       selenium2:
-        wd_host: http://127.0.0.1:8643/wd/hub
+        wd_host: http://127.0.0.1:5555/wd/hub
+        browser: firefox
       base_url: http://www.verizon.com
       javascript_session: selenium2
     Drupal\DrupalExtension:

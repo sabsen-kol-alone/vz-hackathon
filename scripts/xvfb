@@ -1,0 +1,57 @@
+#!/bin/bash
+
+   case "${1:-''}" in
+
+      'start')
+      if test -f /tmp/.X99-lock
+      then
+         echo "Xvfb virtual frame buffer is already running."
+      else
+         echo "Starting Xvfb virtual frame buffer ..."
+         sh -c 'Xvfb :99 -ac -screen 0 1024x768x8 > /tmp/xvfb.log 2>&1 &'
+         error=$?
+         if test $error -gt 0
+         then
+            echo "Error $error! Couldn't start Xvfb virtual frame buffer"
+         fi
+      fi
+      ;;
+
+   'stop')
+      if test -f /tmp/.X99-lock
+      then
+         echo "Stopping Xvfb virtual frame buffer ..."
+         PID=`cat /tmp/.X99-lock`
+         kill -3 $PID
+         if kill -9 $PID ;
+         then
+            sleep 2
+            test -f /tmp/.X99-lock && rm -f /tmp/.X99-lock
+         else
+            echo "Xvfb could not be stopped ..."
+         fi
+      else
+         echo "Xvfb virtual frame buffer is not running."
+      fi
+   ;;
+
+   'restart')
+      $0 stop
+      $0 start
+   ;;
+
+   'status')
+      XVFB_PID=`ps -C Xvfb -o pid,cmd | grep '1024x768x8' | awk '{ print $1 }'`
+      if [ ! -f $XVFB_PID ]
+      then
+         echo "Xvfb virtual frame buffer is running: PID ${XVFB_PID}"
+      else
+         echo "Xvfb virtual frame buffer isn't running..."
+      fi
+   ;;
+
+   *) # no parameter specified
+      echo "Usage: $SELF start|stop|restart|status"
+      exit 1
+   ;;
+   esac

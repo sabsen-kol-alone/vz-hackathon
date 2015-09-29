@@ -2,7 +2,8 @@
     "require": {
       "drupal/drupal-extension": "*",
       "phpunit/php-code-coverage": "~2.0",
-      "behat/mink-goutte-driver": "^1.1@dev"
+      "behat/mink-goutte-driver": "^1.1@dev",
+      "behat/mink-sahi-driver": "dev-master"
     },
     "minimum-stability": "dev",
     "config": {
