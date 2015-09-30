@@ -1,1 +1,3 @@
+../scripts/phantomjs.sh
 ../../bin/behat
+killall -9 phantomjs

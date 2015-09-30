@@ -15,8 +15,7 @@ default:
           verify: false
       selenium2:
         wd_host: http://127.0.0.1:8643/wd/hub
-#      base_url: http://localhost/bdd
-      base_url: http://localhost/src
+      base_url: http://agrudlocal.com/src
       javascript_session: selenium2
     Drupal\DrupalExtension:
       region_map:
