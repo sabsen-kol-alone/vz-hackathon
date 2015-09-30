@@ -206,8 +206,8 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Visual Functional Test Suite</title>
-  <script src="/jquery-min.js"></script>
-  <link href="/style.css" rel="stylesheet" type="text/css">
+  <script src="/visual/jquery-min.js"></script>
+  <link href="/visual/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div style="background-color:#fff;">

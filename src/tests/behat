@@ -1,3 +1,6 @@
+killall -9 php
+killall -9 phantomjs
+
 cwd=`pwd`
 echo "Starting PHP Built-in Server ..."
 echo $cwd
@@ -5,7 +8,7 @@ php -S localhost:8888 -t $cwd/../ &
 sleep 2
 
 echo "Starting Phantomjs Ghost Driver ..."
-phantomjs --webdriver=8643 >/tmp/phantomjs.log 2>&1 &
+phantomjs --webdriver=8643 &
 sleep 2
 
 ../../bin/behat
