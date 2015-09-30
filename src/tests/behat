@@ -8,7 +8,4 @@ echo "Starting Phantomjs Ghost Driver ..."
 phantomjs --webdriver=8643 >/tmp/phantomjs.log 2>&1 &
 sleep 2
 
-return=`../../bin/behat`
-killall -9 phantomjs
-killall -9 php
-exit $return
+../../bin/behat
