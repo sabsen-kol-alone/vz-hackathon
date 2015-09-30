@@ -2,14 +2,16 @@ killall -9 php
 killall -9 phantomjs
 
 cwd=`pwd`
+droot=`dirname $cwd`
 echo "Starting PHP Built-in Server ..."
-echo "DocumentRoot: $cwd"
-# php -S localhost:8888 -t $cwd/../ &
-php -S localhost:8888 -t $cwd &
+echo "DocumentRoot: $droot"
+
+php -S localhost:8888 -t $droot >/dev/null 2>&1 &
+
 sleep 2
 
 echo "Starting Phantomjs Ghost Driver ..."
-phantomjs --webdriver=8643 &
+phantomjs --webdriver=8643 >/dev/null 2>&1 &
 sleep 2
 
 ../../bin/behat
