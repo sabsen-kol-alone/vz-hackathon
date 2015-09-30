@@ -17,7 +17,7 @@ before_script:
 script:
 - php composer.phar self-update
 - php composer.phar install
-- ./run_test.sh
+- scripts/run_test.sh
 
 deploy:
   edge: true
