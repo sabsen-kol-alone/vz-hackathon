@@ -16,7 +16,6 @@ before_script:
 
 script:
 - php composer.phar install
-- phantomjs --webdriver=8643 >/tmp/phantomjs.log &2>1 &
 - cd src/tests
 - ./behat
 - killall -9 phantomjs
