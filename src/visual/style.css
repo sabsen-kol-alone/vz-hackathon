@@ -1,9 +1,17 @@
+html {
+   min-width: 1010px;
+   max-width: 1010px;
+   background: url('behat-logo-s.png');
+   background-color:#222;
+}
+
 body {
+   background-color:#222;
    font-family: "Arial";
    font-size: 11pt;
    margin-top: 0px;
-   margin-left: 0px;
-   margin-right: 0px;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 .error {
@@ -55,11 +63,16 @@ h3 {
 }
 
 textarea {
-   font-family: monospace;
-   font-size: 11pt;
-   color: #000;
-   background-color: #fff;
-   border: 1px solid navy;
+  font-family: monospace;
+  font-size: 11pt;
+  color: #000;
+  background-color: #eee;
+  border: 1px solid #999;
+  -moz-box-shadow:    inset 0 0 10px #aaa;
+  -webkit-box-shadow: inset 0 0 10px #aaa;
+  box-shadow:         inset 0 0 10px #aaa;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .code-text {
@@ -248,15 +261,25 @@ a {
 //  border-radius: 5px;
 }
 
-.behat-select-item {
-  font-size: 14pt;
+.behat-select-item, .behat-text-item {
+  font-size: 12pt;
   color: #000;
-  background-color: #fff;
-  border: 1px solid navy;
-  padding: 2px;
-//  border-radius: 5px;
+  background-color: #eee;
+  border: 1px solid #999;
+  -moz-box-shadow:    inset 0 0 10px #aaa;
+  -webkit-box-shadow: inset 0 0 10px #aaa;
+  box-shadow:         inset 0 0 10px #aaa;
+  padding:1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
 }
 
+.behat-text-item {
+  padding:3px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .behat-feature-block {
   padding: 20px;
   margin-top: 10px;

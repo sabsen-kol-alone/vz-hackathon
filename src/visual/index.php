@@ -206,10 +206,11 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Visual Functional Test Suite</title>
-  <script src="jquery-min.js"></script>
-  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="/jquery-min.js"></script>
+  <link href="/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div style="background-color:#fff;">
 
 <?php
 
@@ -274,14 +275,14 @@
     echo "<div class=success>{$success_msg}</div>";
   }
 
-  echo "<div style='vertical-align:top; padding-top:50px; margin-left:120px;'>\n";
+  echo "<div style='vertical-align:top; padding-top:50px; margin-left:50px;'>\n";
 
   if( $xapplication != "" ) {
     if( $xaction == "edit-context" ) {
-      echo "<h3>Edit Verizon Context:</h3>";
+      echo "<h3>Edit Behat Context:</h3>";
       echo "<div style='margin-top:40px;'>\n";
-      echo "VerizonContext.php:\n";
-      echo "<br><textarea style='margin-top:10px;' id=xcontext rows=25 cols=100>\n";
+      echo "MyContext.php:\n";
+      echo "<br><textarea style='margin-top:10px;' id=xcontext rows=25 cols=95>\n";
       echo $xcontext;
       echo "</textarea>\n";
       echo "<br><br>&nbsp;&nbsp;<span class=behat-button><a href='#' onClick='self_post(\"save-context\");'>Save Context</a></span>";
@@ -290,34 +291,16 @@
       echo "<h3>Edit Behat Configuration:</h3>";
       echo "<div style='margin-top:40px;'>\n";
       echo "behat.yml:\n";
-      echo "<br><textarea style='margin-top:10px;' id=xconfig rows=25 cols=100>\n";
+      echo "<br><textarea style='margin-top:10px;' id=xconfig rows=25 cols=95>\n";
       echo $xconfig;
       echo "</textarea>\n";
       echo "<br><br>&nbsp;&nbsp;<span class=behat-button><a href='#' onClick='self_post(\"save-config\");'>Save Config</a></span>";
-    } else 
-    if( $xaction == "view-context" ) {
-      echo "<h3>View Verizon Context:</h3>";
-      echo "<div style='margin-top:40px;'>\n";
-      echo "VerizonContext.php:\n";
-      echo "<br><div class='code-text' style='display:block; margin-top:10px; width:800px; height:500px; overflow: auto;' id=xcontext>\n";
-      echo  str_replace( array("\n", " "), array('<br>', '&nbsp;'), $xcontext);
-      echo "</div>\n";
-      echo "<br><br></span>";
-    } else 
-    if( $xaction == "view-config" ) {
-      echo "<h3>View Behat Configuration:</h3>";
-      echo "<div style='margin-top:40px;'>\n";
-      echo "behat.yml:\n";
-      echo "<br><div class=code-text style='display:block; margin-top:10px; width:800px; height:500px; overflow: auto;' id=xconfig>\n";
-      echo str_replace( array("\n", " "), array('<br>', '&nbsp;'), $xconfig);
-      echo "</div>\n";
-      echo "<br><br>";
     } else {
-      echo "<h3>Edit Features:</h3>";
+      echo "<h3>Edit Behat Features:</h3>";
       echo "<div>";
-      echo "New Category <input class=behat-select-item type=text name=xnew_category id=xnew_category size=20 value='{$xnew_category}'>";
+      echo "New Category <input class=behat-text-item type=text name=xnew_category id=xnew_category size=20 value='{$xnew_category}'>";
       echo "&nbsp;&nbsp;<span style='' class=behat-button><a href='#' onClick='self_post(\"add_category\");'>Add Category</a></span>";
-      echo "<br><br><span style='margin-left:110px; padding-top:10px;' class=small>Characters allowed: [a-z], [0-9] &amp; _ (underscore).</span>";
+      echo "<br><span style='margin-left:110px; padding-top:10px;' class=small>Characters allowed: [a-z], [0-9] &amp; _ (underscore).</span>";
       echo "</div>";
     }
   }
@@ -338,11 +321,11 @@
     }
     echo "</select>\n\n";
 
-    echo "&nbsp;&nbsp;Feature File <input class=behat-select-item type=text name=xfilename id=xfilename size=50 value='{$xfilename}'>";
-    echo "<br><span style='margin-left:330px;' class=small>Required only for NEW feature. Characters allowed: [a-z], [0-9] &amp; _ (underscore).</span>";
+    echo "&nbsp;&nbsp;Feature File <input class=behat-text-item type=text name=xfilename id=xfilename size=49 value='{$xfilename}'>";
+    echo "<br><span style='margin-left:320px;' class=small>Required only for NEW feature. Characters allowed: [a-z], [0-9] &amp; _ (underscore).</span>";
     echo "</div>\n";
 
-    echo "<br><textarea style='margin-top:10px;' id=xfeature_text rows=20 cols=100>";
+    echo "<br><textarea style='margin-top:10px;' id=xfeature_text rows=20 cols=95>";
     if( trim($xfeature_text) != '' ) {
       echo $xfeature_text;
     } else 
@@ -355,9 +338,13 @@
     echo "<br><br>&nbsp;&nbsp;<span class=behat-button><a href='#' onClick='self_post(\"modify\");'>Modify Feature</a></span>";
     echo "&nbsp;&nbsp;<span style='' class=behat-button><a href='#' onClick='self_post(\"insert\");'>Insert Feature</a></span>";
     echo "<span style='margin-left:380px;' class=behat-button><a href='#' onClick='self_post(\"delete\");'>Delete Feature</a></span>";
+
+    echo "<br><br><br>";
     echo "   </div>";
   }
 
+  echo "<hr><div align=center><span class=small>&nbsp;&nbsp;Copyright &copy; Sabyasachi Sengupta, " . date('Y') . ". Content of this site is free to use as long as you don't make any profit out of it.</span></div>";
+  echo "<br>";
   echo "</div>\n\n";
 
   echo "<form id=form-data method=post action='" . $_SERVER['PHP_SELF'] . "'>\n";
@@ -373,7 +360,6 @@
   echo "   <input type=hidden name=action id=action value=''>\n";
   echo "</form>\n\n";
 
-  echo "<br><br>";
 ?>
 <script language=javascript>
   function self_post( act) {
@@ -481,5 +467,6 @@ $(document).ready(function(){
 
 });
 </script>
+</div>
 </body>
 </html>

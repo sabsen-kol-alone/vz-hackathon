@@ -8,6 +8,13 @@ default:
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\DrupalExtension\Context\DrushContext
+        parameters:
+# URL to use against the web server in the features
+          url: http://localhost:8888
+# Path to the document root
+          documentRoot: public
+# How many seconds will we allow the httpd to use when starting?
+          timeout: 1
   extensions:
     Behat\MinkExtension:
       goutte:
@@ -15,7 +22,7 @@ default:
           verify: false
       selenium2:
         wd_host: http://127.0.0.1:8643/wd/hub
-      base_url: http://localhost:8888
+      base_url: http://localhost/src
       javascript_session: selenium2
     Drupal\DrupalExtension:
       region_map:
