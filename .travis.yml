@@ -11,13 +11,11 @@ before_script:
 - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
 - tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
 - export PATH=$PWD/travis-phantomjs:$PATH
-- scripts/phantomjs.sh
+- src/scripts/phantomjs.sh
 - mysql -e "create database IF NOT EXISTS test;" -uroot
 
 script:
-- php composer.phar self-update
-- php composer.phar install
-- scripts/run_test.sh
+- src/scripts/run_test.sh
 
 deploy:
   edge: true

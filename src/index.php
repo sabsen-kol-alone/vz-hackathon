@@ -27,6 +27,6 @@
   echo "<p>ID: {$names[0]['id']} Name: {$names[0]['name']}</p>";
 
   $ids = $sample->get_id('Joe');
-  echo "<p>ID: {$ids[0]['id']}Name:  {$ids[0]['name']}</p>";
+  echo "<p>ID: {$ids[0]['id']} Name: {$ids[0]['name']}</p>";
 
   echo '</body></html>';
