@@ -1,5 +1,5 @@
 Untracked -> Unmodified -> Modified -> Staged -> Commited -> Pushed to Remote
-
+-----------------------------------------------------------------------------
 $ git status -s
   M README
   MM Rakefile
