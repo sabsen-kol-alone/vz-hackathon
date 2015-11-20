@@ -1,3 +1,8 @@
+Background job in PHP:
+----------------------
+pclose(popen("start \"bla\" \"" . $exe . "\" " . escapeshellarg($args), "r"));
+------------------------------------------------------------------------------
+
 Untracked -> Unmodified -> Modified -> Staged -> Commited -> Pushed to Remote
 -----------------------------------------------------------------------------
 $ git status -s
