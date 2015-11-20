@@ -164,4 +164,17 @@ before_script:
 - sleep 5
 - "wget http://chromedriver.googlecode.com/files/chromedriver_linux32_23.0.1240.0.zip && unzip chromedriver_linux32_23.0.1240.0.zip && sudo mv chromedriver /usr/bin"
 
+------------------------------------------------------------------------
+$command = "C:\wamp\bin\php\php5.5.12\php.exe ../background_process/subscribe_bg.php ".$file_temp_path;
 
+    execInBackground($command);
+
+    function execInBackground($cmd) { 
+        if (substr(php_uname(), 0, 7) == "Windows"){ 
+            pclose(popen("start /B ". $cmd, "r"));  
+        } 
+        else { 
+            exec($cmd . " > /dev/null &");   
+        } 
+    }
+-------------------------------------------------------------------------
