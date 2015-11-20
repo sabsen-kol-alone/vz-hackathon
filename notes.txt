@@ -166,15 +166,20 @@ before_script:
 
 ------------------------------------------------------------------------
 $command = "C:\wamp\bin\php\php5.5.12\php.exe ../background_process/subscribe_bg.php ".$file_temp_path;
+This Works perfectly for a windows machine, with all the output of the script written to the $response_file_path -
 
-    execInBackground($command);
+$command = $PHP_DIR." ../background_process/subscribe_bg.php -p=".$file_path_arg." >../sublogs/responses/".$file_response_path." 2>../sublogs/error_logs/err.txt";
 
-    function execInBackground($cmd) { 
-        if (substr(php_uname(), 0, 7) == "Windows"){ 
-            pclose(popen("start /B ". $cmd, "r"));  
-        } 
-        else { 
-            exec($cmd . " > /dev/null &");   
-        } 
+execInBackground($command)
+
+function execInBackground($cmd) {
+    if (substr(php_uname(), 0, 7) == "Windows"){
+        pclose(popen("start /B ". $cmd, "r"));
+        return 1;
     }
+    else {
+        return 0;
+        //Or the code for linux machine.
+    }
+}
 -------------------------------------------------------------------------
